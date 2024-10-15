@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course_name }} - Chapters</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #212529;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2 {
+            text-align: center;
+            font-weight: 600;
+        }
+
+        h1 {
+            color: #343a40;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: rgb(81, 76, 160);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .chapter-list {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .chapter-list a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 12px;
+            display: block;
+            background-color: #92989e;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .chapter-list a:hover {
+            background-color: #434192;
+            color: #ffffff;
+        }
+
+        .chapter-list li {
+            list-style-type: none;
+            margin-bottom: 12px;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #343a40;
+            padding-top: 30px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+            transition: width 0.3s ease;
+        }
+
+        .sidebar a {
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            color: #ffffff;
+            display: block;
+            transition: background-color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+            padding-left: 30px;
+        }
+
+        .sidebar a:active {
+            background-color: #007bff;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 270px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .skill-block {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        hr {
+            border-top: 1px solid #dee2e6;
+        }
+
+        /* Completed Chapters */
+        .chapter-list .completed {
+            background-color: #28a745 !important;
+        }
+
+        .chapter-list .completed:hover {
+            background-color: #21722a !important;
+        }
+
+        /* Responsiveness */
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 210px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+        }
+
+        /* Back Button Style */
+        .back-button {
+            font-size: 30px;
+            color: white;
+            background-color: #4f4090;
+            border: none;
+            border-radius: 50%;
+            padding: 5px 12px;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+            background-color:#423483;
+        }
+
+        .cchapter-list{
+
+            margin: 0 auto;
+            max-width: 500px;
+ 
+        }
+
+        .cchapter-list a{
+            text-decoration: none;
+            color: #fdfafa;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 12px;
+            display: block;
+            background-color: #5542aa;
+            border-radius: 8px;
+            margin-left: 30px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, padding-left 0.3s ease;
+           
+
+        }
+        .cchapter-list a:hover{
+            background-color: #423483;
+            box-shadow: 0px 10px 10px rgb(141, 140, 140);
+            padding-left: 20px;
+        
+        }
+
+        .back{
+            color: #52458f;
+        }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <a href="/deskboard">Deskboard</a>
+    <a href="/mybatch">My batch</a>
+    <a href="/progresscard">Progress card</a>
+    <a href="/question">Interview Questions</a>
+</div>
+
+<div class="container-fluid main-content">
+ 
+    <h1 class="back">
+        <a style="margin-right: 1500px" href="/e-premium"><i class="bi bi-arrow-left back-button"></i></a> 
+
+       <div> {{ course_name }}</div>
+       {% for m in messages %}
+       <div style="font-size: 30px; color: black; margin-top: 40px;" class="alert alert-{{ m.tags }} text-center">{{ m }}</div>
+       {% endfor %}
+    </h1>
+
+
+    <!-- Single Block for Course Data -->
+    <div class="skill-block">
+        {% for skill_info in course_skills %}
+            <h2>{{ skill_info.skill }}</h2>
+            <ul class="chapter-list list-unstyled">
+                {% for chapter in skill_info.chapter_list %}
+                <li>
+                    {% if chapter in completed_chapters %}
+                        <a class="completed" href="watchp/{{ chapter }}">{{ chapter }}</a>
+                    {% else %}
+                        <a href="watchp/{{ chapter }}">{{ chapter }}</a>
+                    {% endif %}
+                    <hr>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+        <div class="cchapter-list text-center">
+            <a  href="/exam/{{ course_name }}" class="btn btn-primary">Take Assessment</a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies (Optional for advanced features) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+

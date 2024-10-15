@@ -1,0 +1,40 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+
+.navbar{
+    font-size: 20px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.nav-item {
+    margin-right: 20px; 
+}
+
+.home{
+    height: 60px;
+    width: 100%;
+    background-color: #6674CC;
+}
+    
+footer{
+    background-color:#a0a0a4
+}
+footer{
+font-size: 18px;
+text-decoration: none;
+}
+
+
+
+
+
+
+
+
+

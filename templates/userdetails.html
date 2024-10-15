@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'extra_css' %}
+<style>
+    /* General Styling */
+    body {
+        background-color: rgb(240, 240, 240);
+    }
+    
+    /* User profile section styling */
+    .main1 {
+        border: 2px solid #343a40;
+        border-radius: 20px;
+        background: linear-gradient(to right,#242e6b,#4b278d);
+        background-blend-mode: multiply; 
+        color: white;
+        padding: 20px;
+        height: 300px;
+    }
+
+    .main1 h1 {
+        font-size: 40px;
+        font-family: 'Poppins', sans-serif;
+        color: #f8f9fa;
+    }
+
+    .main1 h5 {
+        font-family: 'Poppins', sans-serif;
+        color: #ced4da;
+    }
+
+    .photo {
+        border: 3px solid white;
+        border-radius: 50%;
+        height: 200px;
+        width: 200px;
+        background-color: #000;
+        margin: 27px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        margin-left: 60px;
+    }
+
+    .photo img {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .photo input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    /* Form section styling */
+    .details {
+        border-radius: 20px;
+        padding: 20px;
+        background: linear-gradient(to right,#242e6b,#4b278d);
+        background-blend-mode: multiply;
+        margin-top: 20px;
+    }
+
+    /* Form container styling */
+    .form-container {
+        display: none; /* Initially hide the forms */
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+    }
+
+    /* Submit button */
+    .submit {
+        background-color: #524fb7;
+        border-color: #524fb7;
+        border-radius: 5px;
+        padding: 8px 25px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+    }
+
+    .details a {
+        color: white;
+    }
+
+    .input{
+        width: 100%;
+        border: 2px solid rgb(220, 217, 217);
+        background-color: white;
+        font-size: 17px;
+        padding: 12px;
+        border-radius: 4px;
+        color: #6a6767;
+    }
+</style>
+{% endblock 'extra_css' %}
+
+{% block 'main' %}
+<div class="main" style="height: 1150px;"> <br><br><br>
+    <div class="container" style="height: 100%;">
+        <!-- User profile section -->
+        <div class="col-12">
+            <div class="main1 row align-items-center">
+                <div class="photo col-md-3 col-sm-12 text-center">
+                    {% if info.user_photo %}
+                        <img src="{{ info.user_photo.url }}" alt="Profile Photo">
+                    {% else %}
+                        <p>No Photo</p>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-9 col-sm-12 text-center text-md-left">
+                    <h1>{{ user_details.first_name }}</h1>
+                    <h5>{{ user_details.email }}</h5>
+                    <h5>+91 8452020799</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section to choose which form to display -->
+        <div class="col-12 mt-5">
+            <div class="details row text-center">
+                <div class="col-md-6 mb-3">
+                    <a href="javascript:void(0);" onclick="showForm('personal')">
+                        <i class="bi bi-file-earmark-person-fill"></i> Personal Details
+                    </a>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <a href="javascript:void(0);" onclick="showForm('academic')">
+                        <i class="bi bi-mortarboard-fill"></i> Academic Details
+                    </a>
+                </div>
+            </div>
+
+            <!-- Personal Details Form -->
+            <div class="form-container" id="personal-form" style="display: block;">
+                <h3>Personal Details</h3>
+                <form action="/deskboard" method="post" enctype="multipart/form-data"> 
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="personal-name" class="form-control" name="name" value="{{ info.name }}" placeholder="{{ info.name }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="personal-dob" class="form-control" name="dob" value="{{ info.date_of_birth|date:'Y-m-d' }}" placeholder="{{ info.date_of_birth }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select id="personal-gender" class="form-control" name="gender">
+                            <option value="" disabled selected>{{ info.gender }}</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" id="personal-address" class="form-control" name="address" value="{{ info.address }}" placeholder="{{ info.address }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="user_photo">Profile Photo:</label>
+                        <input type="file" class="form-control" id="user_photo" name="user_photo">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <h3 class="input">{{ user_details.email }}</h3>
+                    </div>
+                    <button type="submit" class="submit btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+            <!-- Academic Details Form -->
+            <div class="form-container" id="academic-form">
+                <h3>Academic Details</h3>
+                <form action="/deskboard" method="post"> 
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="degree">Degree:</label>
+                        <input type="text" id="academic-degree" class="form-control" name="degree" value="{{ info.degree }}" placeholder="{{ info.degree }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="institution">Institution:</label>
+                        <input type="text" id="academic-institution" class="form-control" name="institute" value="{{ info.institute }}" placeholder="{{ info.institute }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Year of Graduation:</label>
+                        <input type="text" id="academic-year" class="form-control" name="year_of_graduation" value="{{ info.year_of_graduation }}" placeholder="{{ info.year_of_graduation }}">
+                    </div>
+                    <button type="submit" class="submit btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to show the selected form and hide others
+        function showForm(formType) {
+            const personalForm = document.getElementById('personal-form');
+            const academicForm = document.getElementById('academic-form');
+
+            if (formType === 'personal') {
+                personalForm.style.display = 'block';
+                academicForm.style.display = 'none';
+            } else {
+                academicForm.style.display = 'block';
+                personalForm.style.display = 'none';
+            }
+        }
+    </script>
+</div>
+{% endblock 'main' %}

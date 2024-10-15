@@ -1,0 +1,367 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- code=1 -->
+
+{% block 'extra_css' %}
+<style>
+    body{
+        background-color: rgb(211, 212, 220);
+ 
+    }
+    .intro .bi{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: 100;
+        display: block; 
+        margin-bottom: 10px; 
+        font-size: 20px;
+    }
+    .intro,h2{
+        font-weight: 700;
+    }
+    span{
+        color: #6674CC;
+    }
+
+    .intro .b1{
+        background-color: rgb(250, 123, 20);
+        height: 50px;
+        width: 200px;
+        font-size: 20px;
+    }
+
+    .custom-list {
+    list-style-type: none; /* Remove default numbering */
+    padding-left: 0; /* Remove default padding */
+}
+
+.custom-list li {
+    position: relative;
+    padding-left: 40px; /* Space for the custom icon */
+    margin-left: 170px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+.custom-list li::before {
+    content: "✔️"; /* Unicode for Font Awesome check icon */
+    position: absolute;
+    left: 0;
+    top: 0;
+  font-size: 20px;
+}
+.overview h3{
+    font-size: 35px;
+    font-weight: 700;
+    margin-left: 150px;
+}
+.overview h3 span{
+    color: #6674CC;
+}
+ .duration{
+    padding-top: 60px;
+    padding-left: 60px;
+    
+ }
+
+/* dropdown */
+.dropdown-container button{
+    width: 1000px;
+    height: 60px;
+    font-size: 23px;
+    border-radius: 20px;
+    display: flex;
+    /* justify-items: start; */
+}
+.dropdown-container .dropdown{
+    margin-bottom: 25px;
+ }
+
+
+ .dropdown-container .dropdown li{
+    width: 380px;
+    margin-left: 20px;
+    font-size: 17px;
+    font-weight: 400;
+ }
+ .dropdown-container button:hover{
+    box-shadow: 0px 0px 10px rgb(83, 83, 107);
+ }
+
+#roadmap{
+width: 100%;
+border-radius: 20px;
+box-shadow: 0px 0px 20px rgb(138, 156, 215);
+}
+
+.certificate h3{
+    font-size: 55px;
+    font-weight: 700;
+    margin-left: 620px;
+}
+.soco i{
+    font-size: 40px;
+}
+ /* tropyy */
+
+.certificate li::before {
+    content: "🏅"; /* Unicode for Font Awesome check icon */
+    position: absolute;
+    left: 0;
+    top: 0;
+  font-size: 20px;
+}
+
+/* responsive */
+/* Lock horizontal scrolling */
+html, body {
+    overflow-x: hidden;
+}
+
+
+/* Ensure the main container fits within the viewport */
+.main {
+    overflow: hidden;
+}
+
+/* Adjustments for different screen sizes */
+@media (max-width: 767.98px) {
+    .intro .bi {
+        font-size: 16px;
+    }
+    .intro h2 {
+        font-size: 24px;
+    }
+    .b1 {
+        width: 100%;
+        font-size: 18px;
+    }
+    .custom-list li {
+        font-size: 18px;
+        margin-left: 0;
+        padding-left: 20px;
+    }
+    .overview h3 {
+        font-size: 28px;
+        margin-left: 0;
+    }
+    .duration {
+        padding-left: 0;
+    }
+    .certificate h3 {
+        font-size: 40px;
+        margin-left: 0;
+    }
+    #roadmap {
+        width: 100%;
+    }
+    .dropdown-container button {
+        width: 100%;
+    }
+    .dropdown-container .dropdown li {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .intro .bi {
+        font-size: 20px;
+    }
+    .intro h2 {
+        font-size: 32px;
+    }
+    .b1 {
+        width: 200px;
+        font-size: 20px;
+    }
+    .custom-list li {
+        font-size: 22px;
+        margin-left: 170px;
+    }
+    .overview h3 {
+        font-size: 35px;
+        margin-left: 150px;
+    }
+    .duration {
+        padding-left: 60px;
+    }
+    .certificate h3 {
+        font-size: 55px;
+        margin-left: 620px;
+    }
+    #roadmap {
+        width: 100%;
+    }
+    .dropdown-container button {
+        width: 950px;
+        margin-left: 280px;
+    }
+    .dropdown-container .dropdown li {
+        width: 900px;
+    }
+}
+
+.thumnail img{
+    margin-right: 130px;
+    margin-top: 50px;
+}
+
+
+ 
+</style>
+{% endblock 'extra_css' %}
+
+
+{% block 'main' %}
+<div class="main container-fluid rounded" style="height: 100%; width: 100%;">
+    <div class="row">
+    <div class="intro col-12 " style="margin-bottom: 100px;">
+        <div class="row" style="margin-left: 180px;padding-top: 50px;">
+            <div class="col-6 rounded mt-5 " >
+                <h2>Learn {{ course.title }} <span>in {{ course.duration }} Months!</span></h2> <br>
+                <i class="bi bi-camera-video-fill"> 100+ Hrs of learning & 300+ Qs </i>
+                <i class="bi bi-camera-video-fill"> {{ course.title }} </i>
+                <i class="bi bi-book-fill"> Individual Doubt Solving TAs & Community </i>
+                <i class="bi bi-book-fill"> Access to Library Plus for PYQs of Top Companies </i>
+
+                <!-- <a href="#"  class="btn btn-warning text-white mt-3 text-center">Enroll Now >> <i class="bi bi-caret-right-fill"></i></a> -->
+                <div class="b1 btn text-white btn-warning mt-3">
+                    <a href="/payment/{{ course.title }}" class="text-white">Enroll Now</a>
+                
+                </div>
+
+              </div>
+        
+
+            <div class=" thumnail col-6 text-center rounded ">
+                <img width="400px" src="{{ course.thumnail.url }}" alt="uplode image ">
+            </div>
+        </div>
+
+
+        </div>
+
+        <div class="bg-light col-12 rounded">
+    <img style="width: 1300px; margin-left: 85px;" src="../static/images/c++ company.png" alt="">
+
+        </div>
+
+        <div class="col-12  rounded">
+            <div class="row bg-white pb-5"style="padding-top: 30px;">
+                <div class="overview col-6 mt-5" >
+                    <h3>Batch <span>Overview</span></h3>
+                    <ol class="custom-list mt-4">
+                        <li>1:1 Doubt Assistance with TAs & Community</li>
+                        <li>300+ Coding Questions on All Important Topics <br> (asked by Top Companies)</li>
+                        <li>Library Feature for Level Up</li>
+                        <li>Live Resume & Interview Preparation</li>
+                        <li>{{ course.title }}</li>
+                        <li>Alternate Day Lecture Schedule</li>
+
+                    </ol>
+                </div>
+                <div class="duration col-6 mt-3">
+                    <img class="mt-5" style="height: 250px; width: 450px; border-radius: 10px;" src="../static/images/succes story.webp" alt="">
+                    <h5 style="margin-left: 75px;"><br>Course Duration - {{ course.duration }}<b> months</b> <br>Course access is for <b>15 months.</b> </h5>
+            </div>
+        </div>
+    </div>
+
+        <div class="overview main col-12 text-center " style="padding-top: 50px; height: 100%;">
+            <h3 class="text-center" style="font-family:'Trebuchet MS', sans-serif; margin-right: 170px;">What will you <span>learn</span>?</h3> <br>
+ 
+
+            <div class="dropdown-container mt-4">
+                <!-- Loop through each skill -->
+                {% for skill in course_skills %}
+                <div class="dropdown">
+                    <button class="btn bg-white dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="mt-1 ms-3">{{ skill.skill }}</div>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <!-- Loop through chapters associated with the current skill -->
+                        {% for chapter in skill.chapter_list %}
+                        <li><a class="dropdown-item" href="#">{{ chapter }}</a></li>
+                        {% empty %}
+                        <li><a class="dropdown-item" href="#">No chapters available</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-12 rounded " style="margin-top: 150px;">
+                <img id="roadmap" src="../static/images/roadmap-transformed.png" alt="">
+            </div>
+        </div>
+
+ 
+        <!-- get certificate -->
+        <div class="certificate col-12 bg-light  rounded">
+            <div class="row pb-5 rounded mb-5"style="padding-top: 30px;">
+                <h3 class="mt-3">Get<span> Certified.</span></h3>
+                <div class="overview col-6 mt-5" >
+                    <ol class="custom-list ">
+                        <li><b>Start today</b> <br>You are just 4 months away from cracking your dream company.</li>
+                        <li><b>Believe in yourself </b> <br>Coding is simple. You just need the right guidance. Follow us and in just 4 months you will be Internship/Placement ready for Tech companies.  </li>
+                    </ol>
+                        <a style="margin-left: 200px; width: 170px; height: 44px;" class="btn btn-danger mt-2" href="/payment/{{ course.title }}">Enroll Now >></a>
+
+                </div>
+                <div class="duration col-6 rounded ">
+                    <h5 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; margin-left: 100px;">Start your Placement Journey Today. </h5>
+                    <img class="ms-5"  style="height: 250px; width: 500px; border-radius: 10px; " src="{{ course.certificate.url }}" alt="certificate">
+            </div>
+        </div>
+    </div>
+ 
+    <div class="col-12 rounded">
+        <div>
+            <div class="container rounded text-center mt-4 " style="font-size: 40px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;font-weight: 700;">On a mission to teach
+              Millions</div>
+            <br><br>
+            <img style="height:614px; width: 1320px; border-radius: 30px; margin-left: 75px;" src="../static/images/student.jpeg" alt="">
+        </div>
+      
+        <br>
+    </div>
+
+      
+    <div class=" soco col-12 rounded bg-light">
+        <div class="text-center rounded">
+          <br><br>
+          <h1 style="font-family:cursive; font-weight: 300;">Join us on</h1>
+          <div class="row mt-5">
+            <div class="col-4 mt-5">
+              <a href=""><i class="bi bi-youtube"></i></a> <br>
+              Youtube <br>
+              <br>
+              <h3>CODE PAPTHSHALA</h3>
+            </div>
+            <div class="col-4 mt-5">
+              <a href=""><i class="bi bi-instagram"></i></a> <br>
+              Instagram <br>
+              <br>
+              <h3>CODE_PAPTHSHALA</h3>
+            </div>
+            <div class="col-4 mt-5">
+              <a href=""><i class="bi bi-telegram"></i></a> <br>
+              Telegram <br>
+              <br>
+              <h3>CODE PAPTHSHALA</h3>
+            </div>
+          </div>
+        </div>
+        <br> <br> <br> <br> 
+    </div>
+</div>
+
+
+    </div>       
+
+    </div>
+</div>
+
+
+{% endblock 'main' %}
+
+

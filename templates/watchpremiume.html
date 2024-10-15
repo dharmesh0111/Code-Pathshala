@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Apply CSS here -->
+{% block 'extra_css' %}
+<style>
+iframe {
+    border: 6px solid black;
+    border-radius: 18px;
+}
+
+.title {
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #4a538f;
+    text-decoration: underline;
+}
+
+body {
+    background-color: gray;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.row {
+    background-color: rgb(223, 221, 221);
+    padding: 20px;
+}
+
+.notes {
+    text-align: center;
+}
+
+.rating {
+    text-align: center;
+}
+
+.rating {
+    margin: 20px auto;
+    width: 250px;
+}
+
+.rating > * {
+    float: right;
+}
+
+.rating label {
+    height: 40px;
+    width: 20%;
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+
+.rating label::after {
+    transition: all 0.4s ease-out;
+    position: absolute;
+    content: '☆';
+    color: #444;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 50px;
+    -webkit-animation: 1s pulse ease;
+    animation: 1s pulse ease;
+}
+
+.rating label:hover::after {
+    color: #5e5e5e;
+    text-shadow: 0 0 15px #5e5e5e;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating input:checked + label::after,
+.rating input:checked ~ label::after {
+    content: "★";
+    color: #eab63a;
+    text-shadow: 0 0 20px #222221;
+}
+
+.star {
+    border: 1px solid rgb(139, 139, 139);
+    background-color: rgb(194, 193, 193);
+    height: 250px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgb(127, 127, 127);
+}
+
+.ok {
+    position: relative;
+    left: 1300px;
+    top: 60px;
+}
+
+textarea {
+    width: 250px;
+    height: 70px;
+    border-radius: 8px;
+    background-color: rgb(213, 211, 211);
+    border: 1px solid rgb(7, 7, 7);
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+textarea:focus {
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    border-color: #4a538f;
+    outline: none;
+}
+
+textarea::placeholder {
+    color: #6c6b6b;
+}
+
+/* Sidebar styles */
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #575757;
+}
+
+.sidebar .close-btn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.main-content {
+    margin-left: 260px;
+    transition: margin-left 0.3s;
+}
+
+#sidebar-toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #4a538f;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+</style>
+{% endblock 'extra_css' %}
+
+<!-- Write code here -->
+{% block 'main' %}
+<div id="mySidebar" class="sidebar">
+    <!-- Use a button instead of <a> tag -->
+    <button class="close-btn"></button>
+    <a href="#section1">Section 1</a>
+    <a href="#section2">Section 2</a>
+    <a href="#section3">Section 3</a>
+</div>
+
+
+<div id="mainContent" class="main-content container-fluid">
+    <div class="row rounded">
+        <div class="col-12">
+            {% for m in messages %}
+            <div class="alert text-{{ m.tags }} text-center">{{ m }}</div>
+            {% endfor %}
+            <h4 class="title text-center mt-2">{{ watchp.title }}</h4>
+            <div class="video text-center mt-4">
+                <iframe width="100%" height="600" src="https://www.youtube.com/embed/{{ watchp.video }}"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <br>
+            <div class="video text-center mt-4">
+                <iframe width="100%" height="600" src="https://www.youtube.com/embed/{{ watchp.video1 }}"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="col-12 mt-2 notes mt-5">
+            <a class="btn btn-primary" href="../media/{{ watchp.notes }}" download>
+                Download Notes<i class="bi bi-cloud-arrow-down-fill"></i>
+            </a>
+            <a style="margin-left: 100px;" class="btn btn-primary" href="/support/{{ watchp.title }}">
+                1v1 Doubt<i class="bi bi-cloud-arrow-down-fill"></i>
+            </a>
+        </div>
+
+        <div class="star col-12 justify-content-center mt-5">
+            <h4 class="text-center mt-4" style="font-family:Verdana, sans-serif; font-size: 25px;">Are you satisfied with the content provided?</h4>
+            <form action="/coursefeedAndRating/{{ watchp.title }}" method="post"> {% csrf_token %}
+                <div class="rating">
+                    <input type="radio" name="rating" id="r1" value="5">
+                    <label for="r1"></label>
+                    <input type="radio" name="rating" id="r2" value="4">
+                    <label for="r2"></label>
+                    <input type="radio" name="rating" id="r3" value="3">
+                    <label for="r3"></label>
+                    <input type="radio" name="rating" id="r4" value="2">
+                    <label for="r4"></label>
+                    <input type="radio" name="rating" id="r5" value="1">
+                    <label for="r5"></label>
+                    <div class="mt-5 ms-5">
+                        <textarea class="text-center" name="review" id="review" placeholder="GIVE US FEEDBACK.."></textarea>
+                    </div>
+                </div>
+                <br>
+                <button class="ok btn btn-secondary" type="submit">SUBMIT<i class="bi bi-caret-right-fill"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr>
+{% endblock 'main' %}
+
+
+
+
+
+

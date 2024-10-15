@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'extra_css' %}
+<style>
+    /* Body background */
+    body {
+        background: linear-gradient(to right, #f9f9fb, #e7d3d3); /* Lighter gradient */
+        background-blend-mode: multiply;
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Custom CSS for Product Card */
+    .product-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        overflow: hidden;
+        background-color: #fff;
+        height: 380px; /* Adjusted height */
+    }
+
+    .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 250px; /* Maintain consistent height */
+        /* object-fit: cover; */
+        object-fit: contain;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .product-card .card-body {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .product-card .card-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .product-card .btn-primary {
+        background-color: #6857ad;
+        border-color: #6857ad;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 20px;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .product-card .btn-primary:hover {
+        background-color: #473980;
+        border-color:#473980;
+    }
+
+    /* Deskboard Header */
+    .deskboard-header {
+        background-color: #9f1f1f;
+        padding: 20px;
+        border-radius: 5px;
+        color: white;
+        margin-bottom: 50px;
+        font-weight: 600;
+    }
+
+    .deskboard-header h2 {
+        font-size: 2rem;
+        display: inline-block;
+        margin-left: 100px;
+    }
+
+    .deskboard-header .welcome {
+        font-size: 1.3rem;
+        font-weight: 500;
+        margin-left: 50px;
+    }
+
+    /* Lock Section */
+    .locked-section {
+        text-align: center;
+        padding: 50px;
+        background-color: #f8d7da;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .locked-section h1 {
+        font-size: 1.5rem;
+        color: #721c24;
+    }
+
+    .locked-section .bi-lock-fill {
+        font-size: 60px;
+        color: #721c24;
+        margin: 20px 0;
+    }
+
+    .locked-section .btn-danger {
+        font-size: 1.2rem;
+        padding: 10px 30px;
+        border-radius: 30px;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .locked-section .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+    /* Explore Section */
+    .explore-arrow {
+        font-size: 45px;
+        color: #343a40;
+        margin: 20px 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .deskboard-header h2 {
+            font-size: 1.5rem;
+            margin-left: 0;
+        }
+
+        .deskboard-header .welcome {
+            font-size: 1.2rem;
+            margin-left: 0;
+        }
+
+        .product-card {
+            height: auto; /* Let it adjust naturally on smaller screens */
+        }
+
+        .locked-section h1 {
+            font-size: 1.2rem;
+        }
+
+        .locked-section .bi-lock-fill {
+            font-size: 50px;
+        }
+    }
+</style>
+{% endblock 'extra_css' %}
+
+{% block 'main' %}
+<div style="height:100%; margin-bottom: 60px; margin-bottom: 110px;">
+    <!-- Deskboard Header -->
+    <div class="col-12 deskboard-header text-center">
+        <h2 class="font-monospace" style="margin-left: 550px;">DESKBOARD <i class="bi bi-person-circle" style="font-size: 25px; margin-left: 300px;"></i></h2>
+        <span  class="welcome">Hey! {{ customer }}</span>
+    </div>
+
+    <!-- Product Cards Section -->
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            {% if data %}
+                {% for d in data %}
+                <div class="col-md-4 p-4">
+                    <div class="card product-card">
+                        <img src="{{ d.thumnail.url }}" class="card-img-top" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ d.title }}</h5>
+                            <a href="/chptrlist/{{ d.title }}" class="btn btn-primary">Start Learning</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- Locked Section for Premium Content -->
+                <div class="locked-section">
+                    <h1>The premium section is currently locked. Purchase the necessary courses to unlock this section and access premium content.</h1>
+                    <i class="bi bi-lock-fill"></i>
+                </div>
+                <!-- Explore Courses Button -->
+                <div class="text-center mt-3">
+                    <i class="bi bi-arrow-90deg-down explore-arrow"></i> <br>
+                    <a class="btn btn-danger text-center" href="/courseMenu">Explore Courses</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock 'main' %}
+
+

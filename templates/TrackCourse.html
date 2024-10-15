@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'extra_css' %}
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        color: #333;
+        background: linear-gradient(to right,#bdc2df, #7c87cc);
+        background-blend-mode: multiply; 
+        }
+
+    .container-fluid {
+        height: auto;
+    }
+
+    .left {
+        background-color: #ffffff;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .left:hover {
+        box-shadow: 0px 0px 5px 5px rgb(145, 146, 142);
+      
+    }
+
+    .circle {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background-color: #dde2f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.4rem;
+        color: #4a4ea8;
+        font-weight: bold;
+        margin: 20px auto;
+        padding: 10px;
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .circle:hover {
+        background-color: #4a4ea8;
+        color: #ffffff;
+        transform: scale(1.1);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .data {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 20px;
+        border: 1px solid #fffefe;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        margin-top: 110px;
+        transition: all 0.3s ease;
+        margin-left: 40px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        width: 800px;
+
+    }
+
+    .data:hover {
+        box-shadow: 0px 0px 5px 5px rgb(145, 146, 142);
+
+    }
+
+    .data h1 {
+        font-size: 2.4rem;
+        color: #2a2a72;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+        font-weight: 600;
+    }
+
+    .data h3 {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+        font-size: 1.6rem;
+    }
+
+    .data h6 {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    hr {
+        border: 0;
+        height: 1px;
+        background: #ddd;
+        margin: 20px 0;
+    }
+
+    .btn-claim {
+        background-color: #4a4ea8;
+        color: #fff;
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+    }
+
+    .btn-claim:hover {
+        background-color: #38389e;
+    }
+
+    @media (max-width: 768px) {
+        .row {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+        }
+
+        .data {
+            margin-top: 20px;
+        }
+    }   
+        
+</style>
+{% endblock 'extra_css' %}
+
+{% block 'main' %}
+<div class="container-fluid mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <div class="left">
+                    {% if digital_marks == 0 %}
+                    <div class="circle" style="color: rgb(168, 53, 53);">Digital learning<br>Inomplete</div>
+                    {% else %}
+                    <div class="circle">Digital Learning<br>{{ digital_marks }}%</div>
+                    {% endif %}
+
+                    {% if exam_detail %}
+                    <div class="circle">Exam score <br>{{ exam_detail.score }}%</div>
+                    {% else %}
+                    <div class="circle">Exam Marks<br>Pending...</div>
+                    {% endif %}
+
+                    <div class="circle">Total percentage<br>{{ total_marks }}%</div>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="data">
+                    <h1>{{ course_name }}</h1>
+                    <h3>Chapters Watched</h3>
+                
+                    <h6>{{ chptr_watched_count }}/{{ chptr_count }}</h6>
+                    <hr>
+                    <h3>Exam Marks</h3>
+                    {% if exam_detail %}
+                    <h6>Correct Answers: {{ exam_detail.correct_anw }}</h6>
+                    <h6>Wrong Answers: {{ exam_detail.wrong_anw }}</h6>
+                    {% else %}
+                    <h6>Correct Answers: Pending...</h6>
+                    <h6>Wrong Answers: Pending...</h6>
+                    {% endif %}
+                    <hr>
+                    <h3>Certificate Requirement</h3>
+                    {% if marks_need == 0.0 %}
+                    <h6>Congratulations! You scored {{ total_marks }}. Claim your certificate below:</h6>
+                    <a class="btn-claim" href="/mybatch">Claim Now</a>
+                    {% else %}
+                    <h6>You need {{ marks_need }}% more to get the certificate.</h6>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock 'main' %}
+
+
+
+

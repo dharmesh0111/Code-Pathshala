@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'extra_css' %}
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .course-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    .course-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #343a40;
+    }
+
+    .course-detail {
+        font-size: 16px;
+        color: #6c757d;
+    }
+
+    .bbtn-primary {
+        font-size: 14px;
+        border-radius: 5px;
+        transition: background-color 0.3s;     
+    }
+
+    .bbtn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .text-center a {
+        margin-left: 100px;
+    }
+</style>
+{% endblock 'extra_css' %}
+
+{% block 'main' %}
+<div class="main" style="height: 700%"> 
+    <br>
+    <div class="container-fluid my-4" style="height: 100%;">
+        {% for m in messages %}
+        <div class="alert text-{{ m.tags }} text-center">{{ m }}</div>
+        {% endfor %}
+        
+        <h2 class="text-center mb-4"><b>Enrolled Courses</b></h2>
+        {% if data %}
+            {% for d in data %}
+            <div class="course-card">
+                <h1 class="course-title">{{ d.title }}</h1>
+                <h5 class="course-detail">Duration: {{ d.duration }} hours</h5>
+                <h5 class="course-detail">Fees Paid: ₹{{ d.fees }}</h5>
+                <div class="text-center">
+                    <a href="/media/{{ d.notes }}" download class="bbtn btn-primary text-white p-3">Download Notes</a> 
+                    
+                    {% if exam %}
+                        {% for e in exam %}
+                            {% if code == 1 %}
+                                <a href="/media/{{ d.certificate }}" download class="bbtn btn-primary text-white p-3">Download Certificate</a>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <a href="/message" class="bbtn btn-primary text-white p-3" style="background-color: rgb(171, 55, 55);">Download Certificate</a>
+                    {% endif %}
+                    
+                    <a href="/invoice/{{ d.title }}" class="bbtn btn-primary text-white p-3">Download Acknowledgment Receipt</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="text-center">
+                <h5>No enrolled courses found.</h5>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock 'main' %}
+

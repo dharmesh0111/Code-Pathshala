@@ -1,0 +1,289 @@
+{% load static %}
+
+
+<!-- Apply CSS here -->
+{% block 'extra_css' %}
+<style>
+/* General Styling */
+body {
+    background-color: #f7f8fa;
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Title Styling */
+.title {
+    font-size: 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #4a538f;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    height: 100%;
+    width: 260px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #2c3e50;  /* Darker background for sidebar */
+    padding-top: 20px;
+    z-index: 1000;
+    overflow-y: auto;
+    max-height: 100vh;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(180deg, #2c3e50, #34495e);
+}
+
+/* Sidebar Course Name */
+.sidebar h4 {
+    color: #f1c40f;  /* Accent color */
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    border-bottom: 2px solid #f1c40f;
+}
+
+/* Sidebar Links */
+.sidebar a {
+    font-size: 16px;
+    color: #ecf0f1;
+    display: block;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+    background-color: #2980b9;
+    transform: translateX(8px);
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 8px;
+}
+
+/* Completed and Incomplete Chapters */
+.sidebar li.completed a {
+    background-color: #27ae60; /* Green for completed */
+    color: white;
+}
+
+.sidebar li.incomplete a {
+    background-color: #e74c3c; /* Red for incomplete */
+    color: white;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 280px;
+    padding: 30px;
+    transition: margin-left 0.3s ease-in-out;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Video Section */
+.video video {
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Feedback Section */
+.feedback-section {
+    margin-top: 60px;
+}
+
+.feedback-section h4 {
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    color: #4a538f;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Rating Section Styling */
+.rating {
+    margin: 20px auto;
+    width: 250px;
+    text-align: center;
+}
+
+.rating > * {
+    float: right;
+}
+
+.rating label {
+    height: 40px;
+    width: 20%;
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+
+.rating label::after {
+    transition: all 0.4s ease-out;
+    position: absolute;
+    content: '☆';
+    color: #444;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 50px;
+}
+
+.rating label:hover::after {
+    color: #5e5e5e;
+    text-shadow: 0 0 15px #5e5e5e;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating input:checked + label::after,
+.rating input:checked ~ label::after {
+    content: "★";
+    color: #eab63a;
+    text-shadow: 0 0 20px #222221;
+}
+
+/* Feedback Textarea */
+textarea {
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    background-color: rgb(238, 238, 238);
+    border: 1px solid #ddd;
+    padding: 15px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+textarea:focus {
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    border-color: #4a538f;
+    outline: none;
+}
+
+textarea::placeholder {
+    color: #6c6b6b;
+}
+
+/* Submit Button */
+.btn-submit {
+    display: block;
+    margin: 20px auto;
+    background-color: #5a32a3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button {
+            font-size: 25px;
+            color: white;
+            background-color: #4f4090;
+            border: none;
+            border-radius: 50%;
+            padding: 12px 17px;
+            cursor: pointer;
+            width: 30px;
+            padding: 10px;
+        }
+
+        .back-button:hover {
+ 
+            background-color:#423483;
+        }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+{% endblock 'extra_css' %}
+
+<!-- Main Content -->
+{% block 'main' %}
+<div id="mySidebar" class="sidebar">
+
+    <h4>{{ course_name }}</h4>
+    {% for skill in course_skills %}
+        <div style="color: white; font-weight: bold; margin-left: 20px;">{{ skill.skill }}</div>
+        <ul>
+            {% for chapter in skill.chapter_list %}
+            {% if chapter in completed_chapters %}
+                <li class="completed"><a href="{{ chapter }}">{{ chapter }}</a></li>
+            {% else %}
+                <li class="incomplete"><a href="{{ chapter }}">{{ chapter }}</a></li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</div>
+
+<div id="mainContent" class="main-content container-fluid">
+    <div class="back">
+            <a style="margin: 60px;" href="/chptrlist/{{ course_name }}"><i class="bi bi-arrow-left back-button "></i></a>
+        </div>
+
+
+    <div class="row rounded">
+        <div class="col-12">
+            {% for m in messages %}
+            <div style="margin-left: 400px;" class="alert text-{{ m.tags }} text-center">{{ m }}</div>
+            {% endfor %}
+            <h4 class="title">{{ chpter_data.chapter_name }}</h4>
+            <div class="video mt-4">
+                <video width="100%" height="auto" controls>
+                    <source src="{{ chpter_data.video.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="feedback-section col-12 mt-5">
+            <h4>Are you satisfied with the content provided?</h4>
+            <form action="/paidcoursereview/{{ chpter_data.chapter_name }}" method="post"> 
+                {% csrf_token %}
+                <div class="rating">
+                    <input type="radio" name="rating" id="r1" value="5">
+                    <label for="r1"></label>
+                    <input type="radio" name="rating" id="r2" value="4">
+                    <label for="r2"></label>
+                    <input type="radio" name="rating" id="r3" value="3">
+                    <label for="r3"></label>
+                    <input type="radio" name="rating" id="r4" value="2">
+                    <label for="r4"></label>
+                    <input type="radio" name="rating" id="r5" value="1">
+                    <label for="r5"></label> 
+                </div>
+                <div>
+                    <textarea name="review" id="review" placeholder="GIVE US FEEDBACK.."></textarea>
+                </div>
+                <button class="btn-submit" type="submit">SUBMIT</button>
+                <a style="margin-left: 537px; width: 64px; text-decoration: none; border-radius: 30px;" href="/chptrlist/{{ course_name }}" class="btn-submit"><span style="margin-left: 13px; ">Back</span></a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock 'main' %}

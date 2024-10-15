@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'extra_css' %}
+<!-- Add your custom styles here -->
+<style>
+    body {
+        background-color: #f4f6f9; 
+        font-family: 'Helvetica Neue', sans-serif;
+        color: #333;
+    }
+
+    .container1 {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        margin-top: 40px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    h2 {
+        color: #5a67d8;
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .question {
+        font-size: 1.35rem;
+        color: #4a5568;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .options {
+        margin-left: 20px;
+    }
+
+    .option-label {
+        display:inline-block ;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        color: #8f9194;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    
+    }
+
+    input[type="radio"] {
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+
+    .submit-btn {
+        margin-top: 30px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 5px;
+        padding: 15px 30px;
+        font-size: 1.1rem;
+        color: #fff;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .submit-btn:hover {
+        background: linear-gradient(135deg, #5a67d8 0%, #553c9a 100%);
+    }
+
+    hr {
+        margin: 30px 0;
+        border: none;
+        height: 1px;
+        background-color: #e2e8f0;
+    }
+
+    .result {
+        border: 2px solid #cbd5e0;
+        border-radius: 10px;
+        padding: 25px;
+        background-color: #f7fafc;
+        margin-bottom: 40px;
+    }
+
+    .correct {
+        color: #48bb78; /* Green for correct answers */
+    }
+
+    .incorrect {
+        color: #e53e3e; /* Red for incorrect answers */
+    }
+
+    .result h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .btn-primary {
+        display: inline-block;
+        padding: 12px 20px;
+        font-size: 1rem;
+        background-color: #667eea;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #5a67d8;
+    }
+</style>
+{% endblock 'extra_css' %}
+
+{% block 'main' %}
+<div class="container1">
+    {% if given_exam %}
+        <!-- Display results -->
+        <div class="result text-center">
+            <h3>You gave {{ marks }} correct answer(s)</h3>
+            <h3>You gave {{ wrong }} wrong answer(s)</h3>
+            <h3>Your score is {{ perc }} %</h3>
+        </div>
+
+        <div class="result text-center">
+            {% for result in results %}
+            <div class="mb-4">
+                <p class="question">Question: {{ result.question }}</p>
+                <div class="options">
+                    {% for option in result.options %}
+                    <div>
+                        <input type="radio" id="{{ forloop.counter }}" name="q{{ forloop.counter }}_answer" value="{{ option }}" {% if result.user_answer == option %}checked{% endif %}>
+                        <label class="option-label {% if option == result.correct_answer %}correct{% elif option == result.user_answer %}incorrect{% endif %}" for="{{ forloop.counter }}">{{ option }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="/chptrlist/{{ course_name }}" class="btn btn-primary">Go Back</a>
+        <a href="/progresscard" class="btn btn-primary">Go To Progresscard</a>
+
+
+    {% else %}
+        <!-- Display assessment questions -->
+        <h2>Assessment Questions</h2>
+        <form method="POST" action="/exam/{{ course_name }}">
+            {% csrf_token %}
+            {% for data in data %}
+            <div class="mb-4">
+                <p class="question">Question {{ forloop.counter }}: {{ data.question }}</p>
+                <div class="options">
+                    <input type="radio" id="q{{ forloop.counter }}_option1" name="q{{ forloop.counter }}_answer" value="{{ data.option1 }}">
+                    <label class="option-label" for="q{{ forloop.counter }}_option1">{{ data.option1 }}</label><br>
+
+                    <input type="radio" id="q{{ forloop.counter }}_option2" name="q{{ forloop.counter }}_answer" value="{{ data.option2 }}">
+                    <label class="option-label" for="q{{ forloop.counter }}_option2">{{ data.option2 }}</label><br>
+
+                    <input type="radio" id="q{{ forloop.counter }}_option3" name="q{{ forloop.counter }}_answer" value="{{ data.option3 }}">
+                    <label class="option-label" for="q{{ forloop.counter }}_option3">{{ data.option3 }}</label><br>
+
+                    <input type="radio" id="q{{ forloop.counter }}_option4" name="q{{ forloop.counter }}_answer" value="{{ data.option4 }}">
+                    <label class="option-label" for="q{{ forloop.counter }}_option4">{{ data.option4 }}</label><br>
+                </div>
+            </div>
+            <hr>
+            {% endfor %}
+
+            <div class="text-center">
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
+    {% endif %}
+</div>
+{% endblock 'main' %}

@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'extra_css' %}
+<style>
+
+body{
+    background: linear-gradient(to right,#8b2929,#665584);
+    background-blend-mode: multiply;   
+}
+
+.product-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    background-color: #fff;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0  10px 12px rgba(0, 0, 0, 0.25);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 12px 12px 0 0;
+}
+
+.product-card .card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-card .card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.product-card .card-text h4 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #5548aa;
+    margin-bottom: 10px;
+}
+
+.product-card .btn-primary {
+    background-color: #4f3fb6;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.product-card .btn-primary:hover {
+    background-color: #271e68;
+    box-shadow: 0  10px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.k a {
+    color: #333;
+    padding: 10px 20px;
+    display: block;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.k a:hover {
+    background-color: #f0ad4e;
+    color: white;
+    border-radius: 5px;
+}
+
+.d-flex button:hover{
+    background-color: #9d681d;
+}
+.sort{
+    margin-right: 700px;
+}
+
+
+</style>
+
+{% endblock 'extra_css' %}
+
+
+{% block 'main' %}
+<div class="container" style="height: 100%;">
+       <form class="d-flex my-4" role="search" action="{% url 'search_courses' %}" method="get">
+        <div class="sort dropdown">
+            <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Sort by Price
+            </button>
+            <ul class="k dropdown-menu">
+                    <li><a href="/sort/asc" class="d-block py-1">Low to High</a></li>
+            <li><a href="/sort/desc" class="d-block py-1">High to Low</a></li>
+            </ul>
+        </div>
+        <input class="form-control me-2" type="search" name="query" placeholder="Search for course titles" aria-label="Search" value="{{ request.GET.query }}">
+        <button class="btn btn-warning" type="submit">Search</button>
+       
+        
+    </form>
+
+  
+      
+    <div class="container  " style=>
+       <div class="row">
+        {% if courses %}
+            {% for d in courses %}
+            <div class="col-md-4 mt-5">
+                <div class="card product-card">
+                    <img src="{{ d.thumnail.url }}" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ d.title }}</h5>
+                        <p class="card-text"><strong><h4>{{ d.fees }}₹</h4></strong></p>
+                        <a href="/courses/{{ d.title }}" class="btn btn-primary"> more details
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+    {% else %}
+        {% endif %}
+    </div>
+      
+  </div> 
+   
+
+<div class="container mb-5 " style="height: 100%;">
+    <div class="row">
+        <!-- Product Card -->
+         {% for d in data %}
+        <div class="col-md-4 mt-4">
+            <div class="card product-card">
+                <img src="{{ d.thumnail.url }}" class="card-img-top" alt="Product Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ d.title }}</h5>
+                    <p class="card-text"><strong><h4>{{ d.fees }}₹</h4></strong></p>
+                    <a href="/courses/{{ d.title }}" class="btn btn-primary"> more details
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- Repeat similar blocks for more products -->
+    </div>
+</div>
+</div>
+
+{% endblock 'main' %}

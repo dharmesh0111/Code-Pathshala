@@ -1,0 +1,319 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'extra_css' %}
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+
+    .container1 {
+        max-width: 100%;
+        padding: 10px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #343a40;
+        margin-bottom: 30px;
+    }
+
+    details {
+        margin-bottom: 15px;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    summary {
+        padding: 15px;
+        background-color:rgba(71, 73, 202, 0.851);
+        color: white;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        border: 2px solid black;
+    }
+
+    summary:hover {
+        background-color: #3f1ad3;
+    }
+
+    .answer {
+        padding: 15px;
+        background-color: #f8f9fa;
+        color: #343a40;
+        border-top: 1px solid #dee2e6;
+        font-size: 20px;
+    }
+
+    .answer p {
+        margin: 0;
+    }
+</style>
+{% endblock 'extra_css' %}
+
+{% block 'main' %}
+<div class="container1 bg-light">
+    <hr>
+    <h2 >Most Asked 50 Interview Questions</h2>
+    <hr>
+
+    <details>
+        <summary>1. What is a database?</summary>
+        <div class="answer"><p>A database is a structured collection of data stored in a computer system that allows for easy access, management, and updating.</p></div>
+    </details>
+
+    <details>
+        <summary>2. Explain the difference between GET and POST methods.</summary>
+        <div class="answer"><p>GET is used to request data from a specified resource while POST is used to send data to a server to create/update a resource.</p></div>
+    </details>
+
+    <details>
+        <summary>3. What is REST API?</summary>
+        <div class="answer"><p>A REST API is an application programming interface that follows the principles of Representational State Transfer (REST).</p></div>
+    </details>
+
+    <details>
+        <summary>4. What is the difference between a stack and a queue?</summary>
+        <div class="answer"><p>A stack is a linear data structure that follows the Last In First Out (LIFO) principle, while a queue follows the First In First Out (FIFO) principle.</p></div>
+    </details>
+
+    <details>
+        <summary>5. Explain the concept of OOP.</summary>
+        <div class="answer"><p>Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects" that contain data and methods.</p></div>
+    </details>
+
+    <details>
+        <summary>6. What is Agile methodology?</summary>
+        <div class="answer"><p>Agile methodology is an iterative approach to software development that focuses on collaboration, customer feedback, and small, rapid releases.</p></div>
+    </details>
+
+    <details>
+        <summary>7. What is a software development lifecycle?</summary>
+        <div class="answer"><p>The software development lifecycle (SDLC) outlines the stages of software development, from initial concept through delivery and maintenance.</p></div>
+    </details>
+
+    <details>
+        <summary>8. What is version control?</summary>
+        <div class="answer"><p>Version control is a system that records changes to files or sets of files over time so that you can recall specific versions later.</p></div>
+    </details>
+
+    <details>
+        <summary>9. Explain the MVC architecture.</summary>
+        <div class="answer"><p>The MVC (Model-View-Controller) architecture separates an application into three main components: Model, View, and Controller to promote organized code and separation of concerns.</p></div>
+    </details>
+
+    <details>
+        <summary>10. What is the use of cookies?</summary>
+        <div class="answer"><p>Cookies are small pieces of data stored on the user's computer by the web browser while browsing a website, used to remember information about the user.</p></div>
+    </details>
+
+    <details>
+        <summary>11. What is SQL injection?</summary>
+        <div class="answer"><p>SQL injection is a code injection technique that exploits security vulnerabilities in an application's software by inserting malicious SQL statements into an entry field.</p></div>
+    </details>
+
+    <details>
+        <summary>12. What are the main types of databases?</summary>
+        <div class="answer"><p>The main types of databases are relational databases (e.g., MySQL, PostgreSQL), NoSQL databases (e.g., MongoDB, Cassandra), and in-memory databases (e.g., Redis).</p></div>
+    </details>
+
+    <details>
+        <summary>13. What is normalization?</summary>
+        <div class="answer"><p>Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity.</p></div>
+    </details>
+
+    <details>
+        <summary>14. What are the different types of joins in SQL?</summary>
+        <div class="answer"><p>The different types of joins in SQL are INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN.</p></div>
+    </details>
+
+    <details>
+        <summary>15. Explain the difference between an abstract class and an interface.</summary>
+        <div class="answer"><p>An abstract class can have method implementations, while an interface can only declare methods. A class can implement multiple interfaces but can inherit from only one abstract class.</p></div>
+    </details>
+
+    <details>
+        <summary>16. What is cloud computing?</summary>
+        <div class="answer"><p>Cloud computing is the delivery of computing services over the internet, allowing users to access and store data and applications remotely.</p></div>
+    </details>
+
+    <details>
+        <summary>17. What is DevOps?</summary>
+        <div class="answer"><p>DevOps is a set of practices that combines software development (Dev) and IT operations (Ops) to shorten the development lifecycle and provide continuous delivery.</p></div>
+    </details>
+
+    <details>
+        <summary>18. What is microservices architecture?</summary>
+        <div class="answer"><p>Microservices architecture is a design approach that structures an application as a collection of loosely coupled services, each responsible for a specific functionality.</p></div>
+    </details>
+
+    <details>
+        <summary>19. What is the role of a software tester?</summary>
+        <div class="answer"><p>A software tester is responsible for evaluating and verifying that a software application meets the specified requirements and is free of defects.</p></div>
+    </details>
+
+    <details>
+        <summary>20. Explain the concept of polymorphism in OOP.</summary>
+        <div class="answer"><p>Polymorphism is the ability of different classes to be treated as instances of the same class through a common interface, allowing for method overriding and overloading.</p></div>
+    </details>
+
+    <details>
+        <summary>21. What is an API?</summary>
+        <div class="answer"><p>An API (Application Programming Interface) is a set of rules and protocols for building software and applications, allowing different programs to communicate with each other.</p></div>
+    </details>
+
+    <details>
+        <summary>22. What is Agile vs. Waterfall methodology?</summary>
+        <div class="answer"><p>Agile is an iterative and incremental approach to software development, while Waterfall is a linear and sequential design process.</p></div>
+    </details>
+
+    <details>
+        <summary>23. What are environment variables?</summary>
+        <div class="answer"><p>Environment variables are dynamic values that can affect the way running processes will behave on a computer, often used to configure settings for applications.</p></div>
+    </details>
+
+    <details>
+        <summary>24. What is a CDN?</summary>
+        <div class="answer"><p>A CDN (Content Delivery Network) is a system of distributed servers that deliver web content to users based on their geographical location to improve loading times and performance.</p></div>
+    </details>
+
+    <details>
+        <summary>25. What is the difference between synchronous and asynchronous programming?</summary>
+        <div class="answer"><p>Synchronous programming executes tasks sequentially, while asynchronous programming allows tasks to run concurrently, enabling better performance and responsiveness.</p></div>
+    </details>
+
+    <details>
+        <summary>26. What is the purpose of a load balancer?</summary>
+        <div class="answer"><p>A load balancer distributes incoming network traffic across multiple servers to ensure no single server becomes overwhelmed, improving reliability and performance.</p></div>
+    </details>
+
+    <details>
+        <summary>27. What are web sockets?</summary>
+        <div class="answer"><p>Web sockets are a protocol for full-duplex communication channels over a single TCP connection, allowing real-time data transfer between a client and a server.</p></div>
+    </details>
+
+    <details>
+        <summary>28. What is a content management system (CMS)?</summary>
+        <div class="answer"><p>A CMS is a software application that allows users to create, manage, and modify digital content on a website without requiring specialized technical knowledge.</p></div>
+    </details>
+
+    <details>
+        <summary>29. Explain the concept of a Singleton pattern.</summary>
+        <div class="answer"><p>The Singleton pattern restricts a class to a single instance and provides a global point of access to it, ensuring controlled access to shared resources.</p></div>
+    </details>
+
+    <details>
+        <summary>30. What is continuous integration?</summary>
+        <div class="answer"><p>Continuous integration is a software development practice where code changes are automatically tested and merged into a shared repository frequently to prevent integration issues.</p></div>
+    </details>
+
+    <details>
+        <summary>31. What is blockchain technology?</summary>
+        <div class="answer"><p>Blockchain is a decentralized, distributed ledger technology that securely records transactions across multiple computers, making them immutable and transparent.</p></div>
+    </details>
+
+    <details>
+        <summary>32. What is an ORM?</summary>
+        <div class="answer"><p>ORM (Object-Relational Mapping) is a programming technique that allows developers to interact with a database using an object-oriented paradigm, abstracting SQL queries.</p></div>
+    </details>
+
+    <details>
+        <summary>33. What are the main components of a web application?</summary>
+        <div class="answer"><p>The main components of a web application include the client-side (front-end), server-side (back-end), database, and web server.</p></div>
+    </details>
+
+    <details>
+        <summary>34. Explain the concept of responsive design.</summary>
+        <div class="answer"><p>Responsive design is an approach to web development that creates sites that provide optimal viewing and interaction experiences across a wide range of devices and screen sizes.</p></div>
+    </details>
+
+    <details>
+        <summary>35. What is a Virtual Machine (VM)?</summary>
+        <div class="answer"><p>A Virtual Machine (VM) is a software emulation of a physical computer that runs an operating system and applications, allowing multiple VMs to run on a single physical machine.</p></div>
+    </details>
+
+    <details>
+        <summary>36. What is the purpose of unit testing?</summary>
+        <div class="answer"><p>Unit testing involves testing individual components or functions of a software application to ensure they work as intended, helping to identify bugs early in the development process.</p></div>
+    </details>
+
+    <details>
+        <summary>37. What is an HTTP status code?</summary>
+        <div class="answer"><p>An HTTP status code is a three-digit response code from a server indicating the result of a client's request, such as 200 for success, 404 for not found, and 500 for server error.</p></div>
+    </details>
+
+    <details>
+        <summary>38. Explain the concept of a RESTful service.</summary>
+        <div class="answer"><p>A RESTful service is an API that adheres to the principles of REST, allowing clients to perform operations on resources using standard HTTP methods such as GET, POST, PUT, and DELETE.</p></div>
+    </details>
+
+    <details>
+        <summary>39. What is data encryption?</summary>
+        <div class="answer"><p>Data encryption is the process of converting plaintext information into a coded format to prevent unauthorized access, ensuring data confidentiality.</p></div>
+    </details>
+
+    <details>
+        <summary>40. What is a software architecture pattern?</summary>
+        <div class="answer"><p>A software architecture pattern is a general reusable solution to a commonly occurring problem within a given context in software architecture.</p></div>
+    </details>
+
+    <details>
+        <summary>41. What is a proxy server?</summary>
+        <div class="answer"><p>A proxy server acts as an intermediary between a client and another server, forwarding requests and responses to improve security, performance, or privacy.</p></div>
+    </details>
+
+    <details>
+        <summary>42. What are the benefits of using a framework?</summary>
+        <div class="answer"><p>Frameworks provide a structured environment for development, enforce best practices, and offer built-in functionality, which speeds up the development process and reduces errors.</p></div>
+    </details>
+
+    <details>
+        <summary>43. What is the importance of code reviews?</summary>
+        <div class="answer"><p>Code reviews improve code quality, help catch bugs, promote knowledge sharing, and ensure adherence to coding standards within a development team.</p></div>
+    </details>
+
+    <details>
+        <summary>44. What is the role of a product manager?</summary>
+        <div class="answer"><p>A product manager is responsible for defining the strategy, roadmap, and features of a product, ensuring it meets user needs and aligns with business objectives.</p></div>
+    </details>
+
+    <details>
+        <summary>45. What is a web application firewall (WAF)?</summary>
+        <div class="answer"><p>A web application firewall (WAF) is a security tool that monitors and filters HTTP traffic to and from a web application to protect against attacks like SQL injection and cross-site scripting (XSS).</p></div>
+    </details>
+
+    <details>
+        <summary>46. What is a design pattern?</summary>
+        <div class="answer"><p>A design pattern is a reusable solution to a common problem in software design, providing a template for how to solve similar issues in different contexts.</p></div>
+    </details>
+
+    <details>
+        <summary>47. What are the advantages of using open source software?</summary>
+        <div class="answer"><p>Open source software promotes collaboration, allows for peer review, provides cost savings, and offers flexibility to modify the source code to fit specific needs.</p></div>
+    </details>
+
+    <details>
+        <summary>48. What is the purpose of performance testing?</summary>
+        <div class="answer"><p>Performance testing evaluates the speed, responsiveness, and stability of an application under a particular workload, ensuring it meets performance standards.</p></div>
+    </details>
+
+    <details>
+        <summary>49. What is a continuous deployment pipeline?</summary>
+        <div class="answer"><p>A continuous deployment pipeline automates the process of deploying code changes to production after passing through automated testing, allowing for rapid and reliable releases.</p></div>
+    </details>
+
+    <details>
+        <summary>50. What is an agile sprint?</summary>
+        <div class="answer"><p>An agile sprint is a set time frame, usually 1-4 weeks, during which a specific set of work must be completed and made ready for review as part of the agile development process.</p></div>
+    </details>
+
+</div>
+{% endblock 'main' %}

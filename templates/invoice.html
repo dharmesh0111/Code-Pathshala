@@ -1,0 +1,179 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .invoice-container {
+            max-width: 850px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .invoice-header {
+            text-align: center;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .invoice-header h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .invoice-header p {
+            font-size: 1rem;
+            color: #6c757d;
+            margin: 5px 0;
+        }
+
+        .invoice-details h4 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .invoice-details p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .invoice-table th,
+        .invoice-table td {
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .invoice-table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .total-amount {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .total-amount h6 {
+            font-size: 1rem;
+            color: #333;
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+
+        .print-button {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-print {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        .btn-print:hover {
+            background-color: #0056b3;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+            }
+
+            .btn-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h2>Course Purchase Invoice</h2>
+            <p><strong>Invoice #:</strong> {{ invoice_number }}</p>
+            <p><strong>Date:</strong> {{ purchase_date }}</p>
+        </div>
+
+        <div class="invoice-details">
+            <h4>Billing Information:</h4>
+            <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Course Title</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ data.course_name.title }}</td>
+                    <td>{{ data.course_name.duration }} months</td>
+                    <td>₹{{ notaxammount }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="total-amount">
+            <h6>CGST: ₹{{ tax }}</h6>
+            <h6>SGST: ₹{{ tax }}</h6>
+            <p>Total Amount Paid: ₹{{ data.course_name.fees }}</p>
+        </div>
+
+        <div class="print-button">
+            <a href="#" onclick="window.print();" class="btn-print">Print Invoice</a>
+        </div>
+
+        <div class="footer">
+            <p>Thank you for your purchase!</p>
+            <p>If you have any questions, feel free to contact us at support@codepathshala.com</p>
+        </div>
+    </div>
+</body>
+
+</html>

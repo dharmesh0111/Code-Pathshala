@@ -1,0 +1,330 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'extra_css' %}
+<style>
+html, body {
+  overflow-x: hidden;
+}
+
+.main {
+    overflow: hidden;
+}
+
+/* type wrriting effect */
+.typewriter-container {
+  display: inline-block;
+  overflow: hidden; /* Ensures text is hidden while typing */
+  border-right: .15em solid orange; /* Cursor style */
+  white-space: nowrap; /* Prevents text wrapping */
+  margin: 0 auto; /* Center the container */
+  letter-spacing: .15em; /* Spacing between characters */
+  animation: blink-caret .75s step-end infinite; /* Cursor blink animation */
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: orange; }
+}
+
+.typewriter-text {
+  display: inline; /* Ensures the text displays inline */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 2.5rem; /* Font size for the text */
+  color: rgb(174, 12, 12);
+}
+
+</style>
+
+{% endblock 'extra_css' %}
+
+
+
+{% block 'main'%}
+
+<main style>
+
+  <div class="main rounded" style="height: 600px;">
+
+    {% for m in messages %}
+    <div class="alert text-{{ m.tags }} text-center">{{ m }}</div>
+
+    {% endfor %}
+
+  <div class="row  rounded ">
+
+    <div class="col-1">
+
+    </div>
+    <div class=" learn col-4 mt-4 text-center rounded ms-5">
+
+      <h1 style="font-size: 50px; font-weight: bold; margin-top: 90px;text-align: left;">Learn & become the</h1> <br>
+      <h1 style="font-size: 50px; font-weight: bold; color:#6674CC; text-align: left;">Top 1% software <br> 
+        developer</h1>
+      <br>
+
+      <div class="b1 btn text-white btn-primary" style="margin-right: 270px; height: 50px;width: 250px; font-size: 20px;"><a href="e-learning"
+          class=" text-white m-3 " style="font-family: initial;">Explore Content </a></div>
+    </div>
+    <div class="col-6 d-flex justify-content-center align-items-center" style="height: 550px;">
+      <img class="im ms-5 mt-4" src="../static/images/5584.jpg" alt="" class="img-fluid">
+    </div>
+  </div>
+
+</div>
+
+    <div class="main1 rounded " style=" height: 200px;">
+      <div class="container text-center text-white  p-2 rounded" style="font-size: 25px; font-family: sans-serif;">
+        India's Most Loved Coding Community ❤️</div>
+      <br>
+      <!-- --------------------- -->
+      <div class="row rounded">
+        <div class="ico col-4" style="margin-left: 120px;">
+          <i class="bi bi-people-fill text-white ms-4 p-2">
+            <span id="happy-learners">0</span> <br>HAPPY LEARNERS
+          </i>
+        </div>
+        <div class="col-4">
+          <i class="bi bi-arrow-through-heart-fill text-white ms-5">
+            <span id="monthly-views">0</span> <br>MONTHLY VIEWS
+          </i>
+        </div>
+        <div class="col-3">
+          <i class="bi bi-link-45deg text-white ms-5">
+            <span id="instagram-family">0</span> <br>INSTAGRAM FAMILY
+          </i>
+        </div>
+      </div>
+      
+      <!-- ---------------- -->
+    </div>
+  </div>
+ <hr>
+
+  <div class="container text-center bg-white rounded">
+    <br><br>
+    <h4 style="color: #6674CC;">new sep batch start 🔥 </h4> <br>
+    <h2>Learn Full Stack Web Development (MERN Stack)</h2> <br>
+    <h4>Start your placement preparation today!</h4>
+    <div class="b1 btn btn-primary text-white mt-2"><a href="/courses/Full Stack Web Development (MERN Stack)" class=" text-white">Explore
+        now ></a></div> <br> <br> <br>
+    <hr>
+
+    <img style="width: 1300px; margin-top: 20px;" src="../static/images/company.png" alt="">
+    <br><br>
+    <hr>
+
+    <h3 class="container mt-5" style="color: #6674CC;">Our Selected Students</h3>
+
+    <!-- students info -->
+    <div class="row">
+      <!-- <div class="col-1"></div> -->
+      <div class="col-6 ms-5 rounded ">
+        <div class="card ms-5 shadow-lg mt-5" style="width: 27rem; height: 400px;">
+          <img style="height: 400px;" src="../static/images/std-1.png" class="card-img-top " alt="...">
+          <div class="card-body">
+
+          </div>
+        </div>
+        <br><br>
+        <div class="card ms-5 shadow-lg mt-5" style="width: 27rem; height: 400px;">
+          <img style="height: 400px;" src="../static/images/std-2.png" class="card-img-top" alt="...">
+          <div class="card-body">
+ 
+          </div>
+        </div>
+
+        <br><br>
+        <div class="card ms-5 shadow-lg mt-5" style="width: 27rem; height: 400px;">
+          <img style="height: 400px;" src="../static/images/std-3.png" class="card-img-top" alt="...">
+          <div class="card-body">
+
+          </div>
+        </div>
+
+        <br><br>
+        <div class="card ms-5 shadow-lg mt-5" style="width: 27rem; height: 400px;">
+          <img style="height: 400px;" src="../static/images/std-4.png" class="card-img-top" alt="...">
+          <div class="card-body">
+ 
+          </div>
+        </div>
+
+        <br><br>
+        <div class="card ms-5 shadow-lg mt-5" style="width: 27rem; height: 400px;">
+          <img style="height: 400px;" src="../static/images/std-5.png" class="card-img-top" alt="...">
+          <div class="card-body">
+    
+          </div>
+        </div>
+
+        <br><br>
+        <div class="card ms-5 shadow-lg mt-5" style="width: 27rem; height: 400px;">
+          <img style="height: 400px;" src="../static/images/std-6.png" class="card-img-top" alt="...">
+          <div class="card-body">
+ 
+          </div>
+        </div>
+        <!-- end -->
+      </div>
+
+      <div class="col-5 rounded " style="align-items: left;">
+
+        <div class="card ms-5 shadow-lg mt-5" style="width: 27rem; height: 400px;">
+          <img style="height: 400px;" src="../static/images/std-7.png" class="card-img-top" alt="...">
+          <div class="card-body">
+
+          </div>
+        </div>
+        <br><br>
+        <div class="card ms-5 shadow-lg mt-5" style="width: 27rem; height: 400px;">
+          <img style="height: 400px;" src="../static/images/std-8.png" class="card-img-top" alt="...">
+          <div class="card-body">
+
+          </div>
+        </div>
+
+
+        <br><br>
+        <div class="card ms-5 shadow-lg mt-5" style="width: 27rem; height: 400px;">
+          <img style="height: 400px;" src="../static/images/std-9.png" class="card-img-top" alt="...">
+          <div class="card-body">
+
+          </div>
+        </div>
+
+        <br><br>
+        <div class="card ms-5 shadow-lg mt-5" style="width: 27rem; height: 400px;">
+          <img style="height: 400px;" src="../static/images/std-10.png" class="card-img-top" alt="...">
+          <div class="card-body">
+
+          </div>
+        </div>
+
+        <br><br>
+        <div class="card ms-5 shadow-lg mt-5" style="width: 27rem; height: 400px;">
+          <img style="height: 400px;" src="../static/images/std-11.png" class="card-img-top" alt="...">
+          <div class="card-body">
+
+          </div>
+        </div>
+
+        <br><br>
+        <div class="card ms-5 shadow-lg mt-5" style="width: 27rem; height: 400px;">
+          <img style="height: 400px;" src="../static/images/std-12.png" class="card-img-top" alt="...">
+          <div class="card-body">
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <br>
+    <hr>
+    <br>
+    <div>
+      <div class="container rounded" style="font-size: 40px; font-family:serif ;font-weight: 400;">On a mission to teach
+        Millions</div>
+      <br><br>
+      <img style="height:614px; width: 1220px; border-radius: 30px;" src="../static/images/student.jpeg" alt="">
+    </div>
+  </div>
+
+  <br>
+  <hr>
+
+  <div class="text-center rounded bg-light" style="height: 460px;">
+    <br><br>
+    <h1 style="font-family:cursive; font-weight: 300;">Join us on</h1>
+    <div class="typewriter-container" style="height: 53px;">
+      <div class="typewriter-text" id="typewriter"></div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-4">
+        <a target="_blank" href="https://www.youtube.com"><i class="bi bi-youtube"></i></a> <br>
+        Youtube <br><br>
+        <h3>CODE PAPTHSHALA</h3>
+      </div>
+      <div class="col-4">
+        <a target="_blank" href="https://www.instagram.com"><i class="bi bi-instagram"></i></a> <br>
+        Instagram <br><br>
+        <h3>CODE_PAPTHSHALA</h3>
+      </div>
+      <div class="col-4">
+        <a target="_blank" href="https://telegram.org/"><i class="bi bi-telegram"></i></a> <br>
+        Telegram <br><br>
+        <h3>CODE PAPTHSHALA</h3>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      function animateNumber(id, endValue, duration) {
+        const element = document.getElementById(id);
+        let startValue = 0;
+        const stepTime = Math.abs(Math.floor(duration / endValue));
+        const timer = setInterval(() => {
+          startValue += 10;
+          element.textContent = `${startValue}+`;
+          if (startValue === endValue) {
+            clearInterval(timer);
+          }
+        }, stepTime);
+      }
+    
+      // Customize the duration as needed
+      animateNumber('happy-learners', 20000, 2000);
+      animateNumber('monthly-views', 100000, 2000);
+      animateNumber('instagram-family', 50000, 2000);
+    });
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const typewriterElement = document.getElementById('typewriter');
+    const texts = ['---YouTube---', '---Instagram---', '---Telegram---'];
+    const typingSpeed = 100; // Speed of typing
+    const deletingSpeed = 100; // Speed of deleting
+    const delayBetweenTexts = 1000; // Delay between texts
+    
+    let currentTextIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    
+    function type() {
+      const text = texts[currentTextIndex];
+      if (isDeleting) {
+        typewriterElement.textContent = text.substring(0, currentCharIndex--);
+        if (currentCharIndex < 0) {
+          isDeleting = false;
+          currentTextIndex = (currentTextIndex + 1) % texts.length;
+          setTimeout(type, delayBetweenTexts);
+        } else {
+          setTimeout(type, deletingSpeed);
+        }
+      } else {
+        typewriterElement.textContent = text.substring(0, currentCharIndex++);
+        if (currentCharIndex === text.length) {
+          isDeleting = true;
+          setTimeout(type, delayBetweenTexts);
+        } else {
+          setTimeout(type, typingSpeed);
+        }
+      }
+    }
+    
+    type(); // Start the typing effect
+  });
+  </script>
+  
+    
+
+</main>
+
+{% endblock 'main' %}
