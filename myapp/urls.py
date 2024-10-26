@@ -59,10 +59,12 @@ path('search-courses/', views.search_courses, name='search_courses'),
 
 path('chptrlist/<title>',views.chptrlist),
 path('chptrlist/watchp/<title>',views.watchchptr),
-
+# path('sidebar/<title>/<code>',views.sidebar),
 path('paidcoursereview/<chptr_name>',views.paidcoursereviews),
 path('deskboard',views.deskboard),
 path('exam/<course_name>',views.giveExam),
+path('preexam/<course_name>',views.pregiveExam),
+# path('examresult/<course_name>',views.examresult),
 # path('info',views.info),
 path('mybatch',views.mybatch),
 path('question',views.question),

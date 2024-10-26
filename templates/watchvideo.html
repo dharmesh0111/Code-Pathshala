@@ -280,8 +280,12 @@ textarea::placeholder {
                 <div>
                     <textarea name="review" id="review" placeholder="GIVE US FEEDBACK.."></textarea>
                 </div>
+                {% if chpter_data.chapter_name in completed_chapters %}
+                <a class="btn-submit" style="text-decoration: line-through; width: 60px;">SUBMIT</a>
+                {% else %}
                 <button class="btn-submit" type="submit">SUBMIT</button>
-                <a style="margin-left: 537px; width: 64px; text-decoration: none; border-radius: 30px;" href="/chptrlist/{{ course_name }}" class="btn-submit"><span style="margin-left: 13px; ">Back</span></a>
+                {% endif %}
+                <a class="btn-submit" style="width: 60px; text-decoration: none;" href="/chptrlist/{{ course_name }}" class="btn-submit"><span style="margin-left: 13px; ">Back</span></a>
             </form>
         </div>
     </div>

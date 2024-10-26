@@ -430,6 +430,8 @@ def giveExam(request, course_name):
                     'course_name':course_name,
                     'given_exam': True  # Set given_exam to True since the exam is given
                 }
+
+
     
 
             else:
@@ -492,7 +494,26 @@ def giveExam(request, course_name):
      # Set given_exam to True after submission
         })
 
+def pregiveExam(request,course_name):
+    u= request.user
+    watched_chapters = course_chptr.objects.filter(course_name=course_name).values_list('chapter_name', flat=True)
+        # Get watched chapters by the user
+    user_watched_chapters = paidfeedback.objects.filter(uid=u, course_name=course_name).values_list('chapter_name', flat=True)
+    context={}
 
+    if len(watched_chapters) == len(user_watched_chapters):
+        user = request.user
+        if USerassement.objects.filter(course_name = course_name,uid = user).exists():
+            context['status'] = 1
+        else:
+            context['status'] = 2
+        context['course_name'] = course_name
+
+        return render(request,"preexam.html",context)
+    else:
+        messages.error(request, "Watch all videos first")
+        return redirect(f"/chptrlist/{course_name}") 
+        
 
 
 
@@ -701,12 +722,3 @@ def tracking(request, course_name):
     }
 
     return render(request, 'TrackCourse.html', context)
-
-
-
-
-
-
-
-
-
